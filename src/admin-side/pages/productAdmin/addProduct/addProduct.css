@@ -1,0 +1,11 @@
+#contained-button-file{
+    display: none;
+}
+.form-wrapper{
+    padding: 2.5rem;
+    text-align: center;
+}
+.field-wrapper{
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}

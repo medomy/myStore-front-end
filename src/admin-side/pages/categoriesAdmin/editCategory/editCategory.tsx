@@ -28,8 +28,8 @@ export const EditCategoryPage: React.FC = () => {
     const params = useParams();
     const id = Number(params.id);
     const validationSchema = yup.object().shape({
-        name: yup.string(),
-        description: yup.string()
+        name: yup.string().required('required field').min(5, 'not less than 5 charachters'),
+        description: yup.string().required('required field')
     })
 
     const onSubmit = async (vals: { name: string, description: string }) => {

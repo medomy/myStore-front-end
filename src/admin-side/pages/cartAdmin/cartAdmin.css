@@ -1,0 +1,15 @@
+.myGrid{
+    justify-content: center !important;
+    margin-top: 5rem;
+    height: 100%;
+}
+table img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px gray solid;
+}
+.myGrid h2{
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}

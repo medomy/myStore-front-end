@@ -18,7 +18,7 @@ export const AddProductAdmin: React.FC<props> = () => {
     const [img, setImg] = React.useState<File | null>(null);
     const [imgSrc, setImgSrc] = React.useState<string>("");
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
-    const [uploading , setUploading] = React.useState<boolean>(false);
+    const [uploading, setUploading] = React.useState<boolean>(false);
     const initialValues = {
         title: "",
         price: 0,
@@ -27,19 +27,22 @@ export const AddProductAdmin: React.FC<props> = () => {
         description: "",
     }
     const onSubmit = async (vals: { title: string; price: number; company: string; category: string | number; description: string; }) => {
-        console.log(vals);
-        console.log(imgSrc);
-        setUploading(true);
-        const createdProduct =await createProduct({
-            title : vals.title,
-            price : vals.price,
-            company : vals.company,
-            categoryid : vals.category,
-            description : vals.description,
-            photosrc : imgSrc
-        })
-        setUploading(false);
-        console.log("sbmit");
+        try {
+            setUploading(true);
+            const createdProduct = await createProduct({
+                title: vals.title,
+                price: vals.price,
+                company: vals.company,
+                categoryid: vals.category,
+                description: vals.description,
+                photosrc: imgSrc
+            })
+            setUploading(false);
+            console.log(createdProduct);
+        } catch (err) {
+            console.log(err);
+        }
+
     }
     const validationSchema = yup.object().shape({
         title: yup.string().required('field required').min(5, "at least 5 charachters"),
@@ -172,10 +175,10 @@ export const AddProductAdmin: React.FC<props> = () => {
                                 </Button>
                                 {
                                     isLoading && <Box sx={{ width: '100%' }} marginY={1}>
-                                    <LinearProgress />
-                                </Box>
+                                        <LinearProgress />
+                                    </Box>
                                 }
-                                
+
                             </div>
                             <div className='btn-wrapper'>
                                 <Button variant="outlined" color="primary" type='submit'>
@@ -183,10 +186,10 @@ export const AddProductAdmin: React.FC<props> = () => {
                                 </Button>
                             </div>
                             {
-                                    uploading && <Box sx={{ width: '100%' }} marginY={1}>
+                                uploading && <Box sx={{ width: '100%' }} marginY={1}>
                                     <LinearProgress />
                                 </Box>
-                                }
+                            }
                         </form>
                     </Grid>
                 </Grid>

@@ -1,6 +1,6 @@
 export default interface CartItem{
     id?: string | number,
-    productId : number | string,
-    userId : string | number,
+    productid : number | string,
+    userid : string | number,
     quantity : number
 }

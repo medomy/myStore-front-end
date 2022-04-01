@@ -9,3 +9,4 @@ export {UsersAdminPage} from './usersAdmin/usersAdmin';
 export {CategoriesAdmin} from './categoriesAdmin/categoriesAdmin';
 export {AddCategoriesAdmin} from './categoriesAdmin/addCatesgories/addCategories';
 export {EditCategoryPage} from './categoriesAdmin/editCategory/editCategory';
+export {EditProductPage} from './productAdmin/editProducts/editProduct';

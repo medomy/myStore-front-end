@@ -7,7 +7,8 @@ import {
 } from "react-router-dom";
 //import HomeAdminPage from './admin-side/pages/adminHome/adminHome';
 import {HomeAdminPage , ProductsAdminPage, OrdersAdminPage , UsersAdminPage , CartAdminPage ,
-   CommentAdminPage , AddProductAdmin , CategoriesAdmin , AddCategoriesAdmin , EditCategoryPage} from './admin-side/pages'
+   CommentAdminPage , AddProductAdmin , CategoriesAdmin , AddCategoriesAdmin , EditCategoryPage,
+   EditProductPage} from './admin-side/pages'
 /*import ProductsAdminPage from './admin-side/pages/productAdmin/productsAdmin';
 import OrdersAdminPage from './admin-side/pages/ordersAdmin/ordrsAdmin';
 import UsersAdminPage from './admin-side/pages/usersAdmin/usersAdmin';
@@ -25,12 +26,12 @@ function App() {
           <Route path="/admin/categories/edit/:id" element={<EditCategoryPage />} />
           <Route path="/admin/products" element={<ProductsAdminPage />} />
           <Route path="/admin/products/add" element={<AddProductAdmin />} />
+          <Route path="/admin/products/edit/:id" element={<EditProductPage />} />
           <Route path="/admin/orders" element={<OrdersAdminPage />} />
           <Route path="/admin/users" element={<UsersAdminPage />} />
-          <Route path="/admin/cart" element={<CartAdminPage />} />
+          <Route path="/admin/users/cart/:id" element={<CartAdminPage />} />
           <Route path="/admin/comments" element={<CommentAdminPage />} />
         </Routes>
-
       </Router>
 
     </div>

@@ -1,11 +1,11 @@
 export default interface User {
     id?: string | number,
-    userName: string,
+    username: string,
     first_name: string,
     last_name: string,
     password: string,
     email: string,
     country: string,
-    mobilePhone: string | number,
-    photoUrl: string
+    mobilephone: string | number,
+    photourl: string
 }

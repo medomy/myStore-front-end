@@ -1,11 +1,10 @@
-import { Box, Grid, TextField, Button } from "@mui/material";
+import { Box, Grid, TextField, Button, LinearProgress } from "@mui/material";
 import './addCategories.css';
 import React, { ChangeEvent } from "react";
 import * as yup from 'yup';
 import { Formik, Form, Field } from 'formik';
 import { NavbarAdmin } from "../../../components/navbar/navbar";
 import uploadPhoto from "../../../services/uploadPhoto";
-import { callInstance } from "../../../network/connection";
 import { createCategory } from "../../../services/apiCall/categories";
 
 
@@ -15,6 +14,8 @@ interface props {
 export const AddCategoriesAdmin: React.FC<props> = () => {
     const [img, setImg] = React.useState<File | null>(null);
     const [imgSrc, setImgSrc] = React.useState<string>("");
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    const [uploading, setUploading] = React.useState<boolean>(false);
     const validationSchema = yup.object().shape({
         name: yup.string().required('required field').min(5, 'not less than 5 charachters'),
         description: yup.string().required('required field')
@@ -25,33 +26,27 @@ export const AddCategoriesAdmin: React.FC<props> = () => {
     }
     const onSubmit = async (vals: { name: string, description: string }) => {
         try {
-            console.log(vals);
-            console.log(imgSrc);
+            setUploading(true);
             const createdCat = await createCategory({
                 name: vals.name,
                 description: vals.description,
                 photourl: imgSrc
             })
+            setUploading(false);
             console.log(createdCat);
         } catch (err) {
             console.log(err);
         }
-        /*callInstance.post('/categories' , {
-            name : vals.name,
-            description : vals.description,
-            photoUrl : imgSrc
-        })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))*/
-
     }
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
         setImg(e.target.files![0]);
     }
     const upload = () => {
-        console.log(img);
+        setIsLoading(true);
         uploadPhoto(img)
-            .then((res) => setImgSrc(res?.data.data.display_url))
+            .then((res) => {
+                setImgSrc(res?.data.data.display_url)
+                setIsLoading(false);})
             .catch(err => console.log(err))
     }
     return (<>
@@ -106,6 +101,11 @@ export const AddCategoriesAdmin: React.FC<props> = () => {
                                 <Button variant="contained" component="span" onClick={upload}>
                                     Upload photo
                                 </Button>
+                                {
+                                    isLoading && <Box sx={{ width: '100%' }} marginY={1}>
+                                        <LinearProgress />
+                                    </Box>
+                                }
 
                             </div>
                             <div className='btn-wrapper'>
@@ -113,6 +113,11 @@ export const AddCategoriesAdmin: React.FC<props> = () => {
                                     Submit
                                 </Button>
                             </div>
+                            {
+                                uploading && <Box sx={{ width: '100%' }} marginY={1}>
+                                    <LinearProgress />
+                                </Box>
+                            }
 
                         </Form>
 

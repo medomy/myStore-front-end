@@ -7,30 +7,40 @@ import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from 'react-router-dom';
 import './adminData.css';
 import { deleteCategory } from "../../services/apiCall/categories";
+import { deleteProduct } from "../../services/apiCall/products";
 interface props {
     rows: any[],
     columns: GridColDef[],
     page: string
-
 }
 
 const AdminDataGrid: React.FC<props> = ({ rows, columns, page }) => {
-    const [selectedIds , setSelectedIds] = React.useState<Array<number | string>>([]);
+    const [selectedIds, setSelectedIds] = React.useState<Array<number | string>>([]);
     const navigate = useNavigate()
-    const add = ()=>{
+    const add = () => {
         navigate(`/admin/${page}/add`);
-
     }
+    const remove = async () => {
+        if (page === "categories") {
+            try {
+                const deletedCategory = await deleteCategory(selectedIds[0]);
+            } catch (err) {
+                console.log(err);
+            }
 
-    const remove =async ()=>{
-        if(page === "categories"){
-            const deletedCategory = await deleteCategory(selectedIds[0]);
-            console.log(deletedCategory);
+        }
+        else if (page === "products") {
+            try{
+                const deletedProduct = await deleteProduct(selectedIds[0]);
+            }catch(err){
+                console.log(err);
+            }
+
         }
 
     }
 
-    const edit = ()=>{
+    const edit = () => {
         navigate(`/admin/${page}/edit/${selectedIds[0]}`)
     }
     return (
@@ -79,8 +89,6 @@ const AdminDataGrid: React.FC<props> = ({ rows, columns, page }) => {
                             Edit selected
                         </Button>
                     </Grid>
-
-
                 </Grid>
             </Box>
         </>

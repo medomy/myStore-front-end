@@ -55,7 +55,7 @@ export const deleteUser = async(id : string | number)=>{
 // get cart items for user
 export const getuserCart = async (id : string | number)=>{
     try{
-        const response = await callInstance.get(`/users/cart/${id}`);
+        const response = await callInstance.get(`/users/${id}/cart`);
         return response.data;
     }catch(err){
         console.log(err);

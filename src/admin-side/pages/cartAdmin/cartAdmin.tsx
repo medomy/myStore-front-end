@@ -19,27 +19,40 @@ export const CartAdminPage: React.FC<props> = () => {
     const id = useParams().id;
 
     const callAllApi = async () => {
-        const currentUser = await getOneUser((Number(id)));
-        setUser(currentUser);
-        const items = await getuserCart(Number(id));
-        setCart(items);
-        let cartProducts: Product[] = [];
-        await items.forEach(async (item: CartItem) => {
-            const product = await getOneProduct(item.productid);
-            cartProducts.push(product);
-        })
-        setProducts(cartProducts);
+        try {
+            const currentUser = await getOneUser((Number(id)));
+            setUser(currentUser);
+            const items = await getuserCart(Number(id));
+            setCart(items);
+            let cartProducts: any[] = [];
+            await items.forEach(async (item: CartItem, index: number) => {
+                const product = await getOneProduct(item.productid);
+                cartProducts.push(product);
+                setProducts(cartProducts);
+                //console.log("cartProducts", cartProducts[0]);
+            });
+        } catch (err) {
+            console.log(err);
+        }
 
     }
+
     React.useEffect(() => {
         callAllApi();
     }, [])
+    //ctl + k +c or shift + alt + a 
+    // console.log("cart", cart);
+    // console.log("cart length", cart.length);
+    // console.log("cart item", cart[0]);
+    // console.log("products", products);
+    // console.log("products length", products.length);
+    // console.log("product", products[0]);
     return (
         <>
             <NavbarAdmin />
             <Box sx={{ flexGrow: 1 }}>
+                <h2>Cart for user {user?.username}</h2>
                 <Grid container className="myGrid">
-                    <h2>Cart for user {user?.username}</h2>
                     <Grid item lg={9} sm={12} xs={12}>
                         <TableContainer component={Paper}>
                             <Table aria-label="simple table">
@@ -51,6 +64,7 @@ export const CartAdminPage: React.FC<props> = () => {
                                         <TableCell align="center">product img</TableCell>
                                     </TableRow>
                                 </TableHead>
+
                                 <TableBody>
                                     {cart.map((item, index) => (
                                         <TableRow
@@ -66,6 +80,8 @@ export const CartAdminPage: React.FC<props> = () => {
                                         </TableRow>
                                     ))}
                                 </TableBody>
+
+
                             </Table>
                         </TableContainer>
 

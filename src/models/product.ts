@@ -5,5 +5,5 @@ export default interface Product {
     description : string,
     company : string,
     categoryid : string | number,
-    photosrc : string
+    photosrc : string 
 }

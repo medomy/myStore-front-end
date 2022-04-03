@@ -16,7 +16,7 @@ export const ProductsAdminPage: React.FC<props> = () => {
         { field: 'title', headerName: 'title', width: 150 },
         { field: 'price', headerName: 'price', width: 150, type: 'number' },
         {
-            field: 'categoryId',
+            field: 'categoryid',
             headerName: 'category Id',
             description: 'This column indicates to category.',
             width: 170,

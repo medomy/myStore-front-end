@@ -80,8 +80,6 @@ export const CartAdminPage: React.FC<props> = () => {
                                         </TableRow>
                                     ))}
                                 </TableBody>
-
-
                             </Table>
                         </TableContainer>
 

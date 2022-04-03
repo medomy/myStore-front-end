@@ -1,11 +1,14 @@
-type productsQuantities = {
+import { Status } from "./enums/status"
+
+export type productsQuantities = {
     productId : string | number,
     qty : number
 }
-export default interface Order{
+export interface Order{
     id?: string | number,
     products_ids_qtys : Array<productsQuantities>,
-    userId : string | number,
+    userid : string | number,
     address : string,
-    totalPrice : number
+    totalprice : number,
+    status : Status
 }

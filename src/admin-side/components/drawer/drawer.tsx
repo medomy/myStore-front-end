@@ -37,8 +37,9 @@ const Admindrawer: React.FC<props> = ({ isDrawer }) => {
             onClick={toggleDrawer('left', false)}
             onKeyDown={toggleDrawer('left', false)}
         >
+            <h6>Admin area</h6>
             <List>
-                {['categories','products', 'users', 'comments'].map((text, index) => (
+                {['categories','products'].map((text, index) => (
                     <ListItem button onClick={()=> openPages(text)} key={text}>
                         <ListItemText primary={text} />
                     </ListItem>
@@ -46,7 +47,7 @@ const Admindrawer: React.FC<props> = ({ isDrawer }) => {
             </List>
             <Divider />
             <List>
-                {['orders', 'cart'].map((text, index) => (
+                {['users', 'orders'].map((text, index) => (
                     <ListItem button onClick={()=> openPages(text)} key={text}>
                         <ListItemText primary={text} />
                     </ListItem>

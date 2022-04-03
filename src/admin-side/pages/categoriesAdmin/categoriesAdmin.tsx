@@ -14,7 +14,7 @@ const columns: GridColDef[] = [
     { field: 'name', headerName: 'Name', width: 200 },
     { field: 'description', headerName: 'Description', width: 200 },
     {
-        field: 'photoUrl',
+        field: 'photourl',
         headerName: 'photoUrl',
         description: 'This column indicates to img src.',
         width: 170,

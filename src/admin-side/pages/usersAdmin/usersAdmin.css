@@ -9,3 +9,10 @@ table img{
     border-radius: 50%;
     border: 1px gray solid;
 }
+a{
+    text-decoration: none;
+    color: black;
+}
+a:focus{
+    color:aqua
+}

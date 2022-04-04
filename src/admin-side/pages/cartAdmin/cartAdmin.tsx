@@ -15,7 +15,14 @@ interface props {
 export const CartAdminPage: React.FC<props> = () => {
     const [cart, setCart] = React.useState<CartItem[]>([]);
     const [user, setUser] = React.useState<User>();
-    const [products, setProducts] = React.useState<Product[]>([]);
+    const [products, setProducts] = React.useState<Product[]>([{
+        title : "title",
+        categoryid : 1,
+        photosrc : "",
+        price : 0,
+        description : "",
+        company : ""
+    }]);
     const id = useParams().id;
 
     const callAllApi = async () => {

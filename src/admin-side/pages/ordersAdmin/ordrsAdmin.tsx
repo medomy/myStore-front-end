@@ -18,7 +18,7 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 500,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -144,7 +144,7 @@ export const OrdersAdminPage: React.FC<props> = () => {
                                                                                 <TableRow key={item.productId}
                                                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                                                                     <TableCell>{item.productId}</TableCell>
-                                                                                    <TableCell>{item.qty}</TableCell>
+                                                                                    <TableCell align="center">{item.qty}</TableCell>
                                                                                 </TableRow>
                                                                             ))}
                                                                         </TableBody>

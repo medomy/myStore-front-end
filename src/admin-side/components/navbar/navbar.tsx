@@ -2,7 +2,8 @@ import React from "react";
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Admindrawer from "../drawer/drawer";
-
+import { Link } from "react-router-dom";
+import './navbar.css';
 
 
 interface props {
@@ -12,12 +13,12 @@ interface props {
 export const NavbarAdmin: React.FC<props> = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-    const [isDrawer , setIsDrawer] = React.useState<boolean>(false);
+    const [isDrawer, setIsDrawer] = React.useState<boolean>(false);
     const pages = ["go to website", " stay"];
     const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-    React.useEffect(()=>{
-        console.log("isDrawer",isDrawer);
-    },[isDrawer])
+    React.useEffect(() => {
+        console.log("isDrawer", isDrawer);
+    }, [isDrawer])
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -33,22 +34,26 @@ export const NavbarAdmin: React.FC<props> = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-    const toggleDrawer = ()=>{
-        setIsDrawer((v)=> !v);
+    const toggleDrawer = () => {
+        setIsDrawer((v) => !v);
     }
 
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-                    >
-                        My-Store
-                    </Typography>
+                    <Link to="/">
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="div"
+                            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+                        >
+                            My-Store
+                        </Typography>
+
+                    </Link>
+
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
@@ -85,7 +90,7 @@ export const NavbarAdmin: React.FC<props> = () => {
                                 </MenuItem>
                             ))}
                             <MenuItem onClick={toggleDrawer}>
-                                <Typography textAlign="center">show drawer</Typography>
+                                <Typography textAlign="center">adminstrate</Typography>
                             </MenuItem>
                         </Menu>
                     </Box>
@@ -108,11 +113,11 @@ export const NavbarAdmin: React.FC<props> = () => {
                             </Button>
                         ))}
                         <Button
-                                onClick={toggleDrawer}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                show Drawer
-                            </Button>
+                            onClick={toggleDrawer}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            adminstrate
+                        </Button>
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
@@ -146,7 +151,7 @@ export const NavbarAdmin: React.FC<props> = () => {
                     </Box>
                 </Toolbar>
             </Container>
-            <Admindrawer isDrawer= {isDrawer}/>
+            <Admindrawer isDrawer={isDrawer} />
         </AppBar>
     );
 }
